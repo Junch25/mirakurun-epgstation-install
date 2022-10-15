@@ -1,0 +1,59 @@
+- name: PXQ3PE4-T1
+  types:
+    - GR
+  command: recpt1 --b25 --strip --device /dev/px4video2 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-T2
+  types:
+    - GR
+  command: recpt1 --b25 --strip --device /dev/px4video3 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-T3
+  types:
+    - GR
+  command: recpt1 --b25 --strip --device /dev/px4video6 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-T4
+  types:
+    - GR
+  command: recpt1 --b25 --strip --device /dev/px4video7 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-S1
+  types:
+    - BS
+    - CS
+  command: recpt1 --b25 --strip --device /dev/px4video0 --EMM --lnb 15 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-S2
+  types:
+    - BS
+    - CS
+  command: recpt1 --b25 --strip --device /dev/px4video1 --EMM --lnb 15 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-S3
+  types:
+    - BS
+    - CS
+  command: recpt1 --b25 --strip --device /dev/px4video4 --EMM --lnb 15 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+
+- name: PXQ3PE4-S4
+  types:
+    - BS
+    - CS
+  command: recpt1 --b25 --strip --device /dev/px4video5 --EMM --lnb 15 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false

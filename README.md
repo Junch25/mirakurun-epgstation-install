@@ -1,1 +1,2 @@
-# mirakurun-install
+# mirakurun-epgstation-install
+mirakurunとepgstationを自動的にインストールできるスクリプト
