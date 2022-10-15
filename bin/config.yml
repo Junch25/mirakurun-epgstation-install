@@ -1,0 +1,7 @@
+slack-config:
+  slack-token-key: "xxxxx"
+  channel: "xxxxx"
+
+discord-config:
+  discord-token-key: "xxxxx"
+  discord-webhook: xxxxx
