@@ -1,16 +1,16 @@
 #!/bin/bash
 
-echo "mirakurun install!"
+echo "Mirakurun install!"
 npm install arib-b25-stream-test -g --unsafe-perm
 npm install pm2 -g
 npm install mirakurun -g --production
-echo "mirakurun install done!"
+echo "Mirakurun install done!"
 
 echo "conf file reame"
 mv /usr/local/etc/mirakurun/tuners.yml /usr/local/etc/mirakurun/tuners.yml.old
 echo "conf file reame done!"
 
-echo "select tuners"
+echo "Select tuners create yaml"
 echo "1.Q3PE4 2.W3PE4 3.tuners-15ch >"
 read menu
 
@@ -38,3 +38,4 @@ elif [$menu = 3]; then
 else
     echo "error"
 fi
+echo "done!"
