@@ -7,7 +7,7 @@ TUNER3="tuners-15ch"
 CURRENT="$HOME/mirakurun-epgstation-install/"
 echo "Dir: $CURRENT"
 
-function mirakurun_install(){
+function mirakurun_install() {
     sudo npm install arib-b25-stream-test -g --unsafe-perm
     sudo npm install pm2 -g
     sudo npm install mirakurun -g --production
@@ -18,19 +18,18 @@ function mirakurun_install(){
 # 1.Q3PE4 2.W3PE4 3.tuners-15ch
 function mirakurun_setup() {
     echo "Select tuners configuration yaml"
-    select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"
-    do
-        if [ $TUNER = exit ];then
-        break
-    else
-        echo $TUNER
-        sudo rm /usr/local/etc/mirakurun/tuners.yml
-        sudo cp $CURRENT/conf/$TUNER.yml /usr/local/etc/mirakurun/
-        sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
-        ls -lah /usr/local/etc/mirakurun/
-        sudo mirakurun init
-        sudo mirakurun restart
-    fi
+    select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"; do
+        if [ $TUNER = exit ]; then
+            break
+        else
+            echo $TUNER
+            sudo rm /usr/local/etc/mirakurun/tuners.yml
+            sudo cp $CURRENT/conf/$TUNER.yml /usr/local/etc/mirakurun/
+            sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
+            ls -lah /usr/local/etc/mirakurun/
+            sudo mirakurun init
+            sudo mirakurun restart
+        fi
     done
 }
 
@@ -39,4 +38,3 @@ echo "Mirakurun install start!"
 mirakurun_install
 mirakurun_setup
 echo "Mirakurun install done!"
-

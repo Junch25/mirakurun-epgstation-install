@@ -18,20 +18,20 @@ function mirakurun_install() {
 # 1.Q3PE4 2.W3PE4 3.tuners-15ch
 function mirakurun_setup() {
     echo "Select tuners configuration yaml"
-    select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"
-    do
-        if [ $TUNER = exit ];then
-        break
-    else
-        echo $TUNER
-        sudo rm /usr/local/etc/mirakurun/tuners.yml
-        sudo cp $CURRENT/conf/$TUNER.yml /usr/local/etc/mirakurun/
-        sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
-        ls -lah /usr/local/etc/mirakurun/
-        sudo mirakurun init
-        sudo mirakurun restart
-    fi
+    select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"; do
+        if [ $TUNER = exit ]; then
+            break
+        else
+            echo $TUNER
+            sudo rm /usr/local/etc/mirakurun/tuners.yml
+            sudo cp $CURRENT/conf/$TUNER.yml /usr/local/etc/mirakurun/
+            sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
+            ls -lah /usr/local/etc/mirakurun/
+            sudo mirakurun init
+            sudo mirakurun restart
+        fi
     done
+    return 0
 }
 
 function epgstation_install() {
@@ -49,10 +49,10 @@ function epgstation_install() {
     cp config/enc.js.template config/enc.js
     cp $CURRENT/conf/config.yml config/config.yml
     cp -r mirakurun-epgstation-install/bin/ .
-echo "EPGStation config copy done!"
-echo "EPGStation start"
-sudo pm2 start dist/index.js --name "epgstation"
-sudo pm2 save
+    echo "EPGStation config copy done!"
+    echo "EPGStation start"
+    sudo pm2 start dist/index.js --name "epgstation"
+    sudo pm2 save
 }
 
 # Mirakurun install
