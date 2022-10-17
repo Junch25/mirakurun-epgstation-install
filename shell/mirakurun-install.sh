@@ -1,41 +1,42 @@
 #!/bin/bash
 
-echo "Mirakurun install!"
-npm install arib-b25-stream-test -g --unsafe-perm
-npm install pm2 -g
-npm install mirakurun -g --production
+TUNER1="tuners-Q3PE4"
+TUNER2="tuners-W3PE4"
+TUNER3="tuners-15ch"
+
+CURRENT="$HOME/mirakurun-epgstation-install/"
+echo "Dir: $CURRENT"
+
+function mirakurun_install(){
+    sudo npm install arib-b25-stream-test -g --unsafe-perm
+    sudo npm install pm2 -g
+    sudo npm install mirakurun -g --production
+    return 0
+}
+
+# Mirakurun setuo
+# 1.Q3PE4 2.W3PE4 3.tuners-15ch
+function mirakurun_setup() {
+    echo "Select tuners configuration yaml"
+    select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"
+    do
+        if [ $TUNER = exit ];then
+        break
+    else
+        echo $TUNER
+        sudo rm /usr/local/etc/mirakurun/tuners.yml
+        sudo cp $CURRENT/conf/$TUNER.yml /usr/local/etc/mirakurun/
+        sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
+        ls -lah /usr/local/etc/mirakurun/
+        sudo mirakurun init
+        sudo mirakurun restart
+    fi
+    done
+}
+
+# Mirakurun install
+echo "Mirakurun install start!"
+mirakurun_install
+mirakurun_setup
 echo "Mirakurun install done!"
 
-echo "conf file reame"
-mv /usr/local/etc/mirakurun/tuners.yml /usr/local/etc/mirakurun/tuners.yml.old
-echo "conf file reame done!"
-
-echo "Select tuners create yaml"
-echo -n "1.Q3PE4 2.W3PE4 3.tuners-15ch >"
-read menu
-
-# tuners Q3PE4
-if [ "$menu" = "1" ]; then
-    cp ../conf/tuners-Q3PE4.yml /usr/local/etc/mirakurun/
-    mv /usr/local/etc/mirakurun/tuners-Q3PE4.yml /usr/local/etc/mirakurun/tuners.yml
-    mirakurun init
-    mirakurun restart
-
-# tuners W3PE4
-elif [ "$menu" = "2" ]; then
-    cp ../conf/tuners-W3PE4.yml /usr/local/etc/mirakurun/
-    mv /usr/local/etc/mirakurun/tuners-W3PE4.yml /usr/local/etc/mirakurun/tuners.yml
-    mirakurun init
-    mirakurun restart
-
-# tuners 15ch
-elif [ "$menu" = "3" ]; then
-    cp ../conf/tuners-15ch.yml /usr/local/etc/mirakurun/
-    mv /usr/local/etc/mirakurun/tuners-15ch.yml /usr/local/etc/mirakurun/tuners.yml
-    mirakurun init
-    mirakurun restart
-
-else
-    echo "error"
-fi
-echo "done!"
