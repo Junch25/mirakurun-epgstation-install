@@ -32,7 +32,7 @@ $ bash mirakurun_epgstion.sh
 | Name | URL |
 | ---- | ---- |
 | Mirakurun | https://github.com/Chinachu/Mirakurun |
-| EPGStation | https://github.com/l3tnun/EPGStation.git |
+| EPGStation | https://github.com/l3tnun/EPGStation |
 
 ## 動作について
 Ubuntu server 20.04にて動作確認済となります。
