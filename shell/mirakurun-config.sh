@@ -19,7 +19,6 @@ select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"; do
         sudo cp ../conf/$TUNER.yml /usr/local/etc/mirakurun/
         sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
         ls -lah /usr/local/etc/mirakurun/
-        sudo mirakurun init
         sudo mirakurun restart
     fi
 done
