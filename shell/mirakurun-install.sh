@@ -3,7 +3,7 @@
 TUNER1="tuners-Q3PE4"
 TUNER2="tuners-W3PE4"
 TUNER3="tuners-15ch"
-
+PS3='Select tuners configuration yaml> '
 CURRENT="$HOME/mirakurun-epgstation-install/"
 echo "Dir: $CURRENT"
 
@@ -17,7 +17,6 @@ function mirakurun_install() {
 # Mirakurun setuo
 # 1.Q3PE4 2.W3PE4 3.tuners-15ch
 function mirakurun_setup() {
-    echo "Select tuners configuration yaml"
     select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"; do
         if [ $TUNER = exit ]; then
             break
@@ -31,6 +30,7 @@ function mirakurun_setup() {
             sudo mirakurun restart
         fi
     done
+    return 0
 }
 
 # Mirakurun install
