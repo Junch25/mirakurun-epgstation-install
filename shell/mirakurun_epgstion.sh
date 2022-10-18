@@ -17,14 +17,13 @@ function mirakurun_install() {
 # Mirakurun setuo
 # 1.Q3PE4 2.W3PE4 3.tuners-15ch
 function mirakurun_setup() {
-    echo "Select tuners configuration yaml"
     select TUNER in "$TUNER1" "$TUNER2" "$TUNER3" "exit"; do
         if [ $TUNER = exit ]; then
             break
         else
             echo $TUNER
             sudo rm /usr/local/etc/mirakurun/tuners.yml
-            sudo cp $CURRENT/conf/$TUNER.yml /usr/local/etc/mirakurun/
+            sudo cp ../conf/$TUNER.yml /usr/local/etc/mirakurun/
             sudo mv /usr/local/etc/mirakurun/$TUNER.yml /usr/local/etc/mirakurun/tuners.yml
             ls -lah /usr/local/etc/mirakurun/
             sudo mirakurun init
@@ -35,33 +34,34 @@ function mirakurun_setup() {
 }
 
 function epgstation_install() {
-    echo "EPGStation install!"
+    # EPGStation install
     cd ~/
     git clone https://github.com/l3tnun/EPGStation.git
     cd EPGStation
     npm run all-install
     npm run build
-    echo "EPGStation install done!"
-    echo "EPGStation config copy!"
+
+    # Cretate configure file
     cp config/operatorLogConfig.sample.yml config/operatorLogConfig.yml
     cp config/epgUpdaterLogConfig.sample.yml config/epgUpdaterLogConfig.yml
     cp config/serviceLogConfig.sample.yml config/serviceLogConfig.yml
     cp config/enc.js.template config/enc.js
-    cp $CURRENT/conf/config.yml config/config.yml
-    cp -r mirakurun-epgstation-install/bin/ .
-    echo "EPGStation config copy done!"
-    echo "EPGStation start"
+    cp ~/mirakurun-epgstation-install/conf/config.yml config/config.yml
+    cp -r ~/mirakurun-epgstation-install/bin/ .
+
+    # EPGStation start and enabled
     sudo pm2 start dist/index.js --name "epgstation"
     sudo pm2 save
+    return 0
 }
 
 # Mirakurun install
-echo "Mirakurun install start!"
+echo "Mirakurun install and setup start!"
 mirakurun_install
 mirakurun_setup
-echo "Mirakurun install done!"
+echo "Mirakurun install and setup done!"
 
 # EPGStation install
-echo "EPGStation install start!"
+echo "EPGStation install and setup start!"
 epgstation_install
-echo "EPGStation install done!"
+echo "EPGStation install and setup done!"
