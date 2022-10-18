@@ -10,22 +10,18 @@ $ cd shell/
 
 Mirakurunを自動でインストールと設定スクリプト
 ```(bash)
-# Mirakurun installation and configuration
 $ bash mirakurun-install.sh
 ```
 Mirakurunを自動設定スクリプト
 ```(bash)
-# Mirakurun configuration
 $ bash mirakurun-config.sh
 ```
 EPGStationを自動でインストールと設定スクリプト
 ```(bash)
-# EPGStation installation and configuration
 $ bash epgstion-install.sh
 ```
 MirakurunとEPGStationの両方を自動でインストールと設定スクリプト
 ```(bash)
-# Install and configure Mirakurun and EPGStation
 $ bash mirakurun_epgstion.sh
 ```
 
