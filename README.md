@@ -2,8 +2,9 @@
 MirakurunとEPGStationを自動的にインストールできるスクリプト
 
 ## Usage / 使用方法
-Git clone と開く
+ライブラリインストールとソースダウンロード
 ```(bash)
+$ sudo apt-get install cmake g++ git curl samba unzip gcc make
 $ git clone https://github.com/Junch25/mirakurun-epgstation-install.git
 $ cd shell/
 ```
